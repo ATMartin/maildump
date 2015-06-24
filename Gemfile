@@ -26,7 +26,7 @@ gem 'jbuilder', '~> 2.0'
 
 # Use Griddler & Mandrill for email management
 gem 'griddler'
-gem 'griddler-mandrill'
+gem 'griddler-mandrill', '1.0.2'
 
 # Usee Whenever for cron job managment from Rails
 gem 'whenever', :require => false
