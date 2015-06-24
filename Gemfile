@@ -31,6 +31,7 @@ gem 'griddler-mandrill'
 # Usee Whenever for cron job managment from Rails
 gem 'whenever', :require => false
 
+gem 'rails_12factor'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
