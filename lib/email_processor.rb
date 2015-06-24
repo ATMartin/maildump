@@ -5,6 +5,7 @@ class EmailProcessor
   end
 
   def process
+    puts "******TRYING TO GET #{@email.to[0].token}!******"
     return if !Inbox.select(:slug).include? @email.to[0].token
     EmailMessage.create!({
       to: @email.to[0].email,
