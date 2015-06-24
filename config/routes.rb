@@ -4,7 +4,10 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+  
+  root 'inbox#index'
 
+  mount_griddler('/inbox/maildump')
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
