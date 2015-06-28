@@ -6,4 +6,14 @@
 
 <br>
 <%= "This inbox has about #{ ((cookies[:maildump_dies_at].to_time - Time.now) / 60 ).round } minutes left!" %>
+<hr>
+<table>
+<% @emails.each do |message| %>
+  <tr>
+    <td><%= message.from %></td>
+    <td><%= message.subject %></td>
+    <td> <%= message.body %> </td>
+  </tr>
+<% end %>
+</table>
 <h3>Bottom</h3>
