@@ -36,7 +36,8 @@ $(function() {
     initialize: function() {
       
       this.listenTo(Messages, 'reset', this.loadMessages);
-    
+      this.listenTo(Messages, 'sync', this.loadMessages);
+
       Messages.fetch();
       setInterval(function() {
         console.log("Looking for new messages...");
