@@ -28,9 +28,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'griddler'
 gem 'griddler-mandrill', '1.0.2'
 
-# Usee Whenever for cron job managment from Rails
-gem 'whenever', :require => false
-
 gem 'rails_12factor'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -50,5 +47,10 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # We use Heroku's Scheduler addon in production, so this 
+  # is only necessary locally for cron job management.
+  gem 'whenever', :require => false
+
 end
 
