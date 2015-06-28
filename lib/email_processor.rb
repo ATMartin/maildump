@@ -7,7 +7,7 @@ class EmailProcessor
 
   def process
     puts "******TRYING TO GET #{@email.to[0][:token]}!******"
-    if !Inbox.select(:slug).include? @email.to[0][:token]
+    if !Inbox.pluck(:slug).include? @email.to[0][:token].to_s
       puts "******NO INBOX FOUND FOR #{@email.to[0][:token]}!*****"
       return
     end
@@ -16,7 +16,7 @@ class EmailProcessor
       from: @email.from[:email],
       subject: @email.subject,
       body: @email.body,
-      inbox: Inbox.find_by(slug: @email.to[0].token)
+      inbox: Inbox.find_by(slug: @email.to[0][:token])
     })
   end
 
