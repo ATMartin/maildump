@@ -15,10 +15,16 @@
 
 <script type="text/template" id="message-template">
   <tr>
-    <td><%%= message.from %></td>
-    <td><%%= message.subject %></td>
-    <td> <%%= message.body %> </td>
+    <td><%%= from %></td>
+    <td><%%= subject %></td>
+    <td> <%%= body %> </td>
   </tr>
+</script>
+
+<script type="text/template" id="warning-template">
+  <div class="warning-bar">
+    <p>It looks like this inbox is dead. Would you like a new one?</p>
+  </div>
 </script>
 
 

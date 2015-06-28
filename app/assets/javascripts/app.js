@@ -26,22 +26,24 @@ $(function() {
       return this;
     }
   });
-    
+
   var MessagesView = Backbone.View.extend({
     
     el: $('#messages'),
     
     tagName: "table",
+    
+    msgCount: 0,
 
     initialize: function() {
       
       this.listenTo(Messages, 'reset', this.loadMessages);
-      this.listenTo(Messages, 'sync', this.loadMessages);
 
       Messages.fetch();
-      setInterval(function() {
+      this.intervalHandle = setInterval(function() {
         console.log("Looking for new messages...");
-        Messages.fetch(); 
+        Messages.fetch({ reset: true }); 
+        
       }, 5000);
     },
 
@@ -50,13 +52,32 @@ $(function() {
     },
 
     loadMessage: function(message) {
-      console.log("loading messages...");
       var view = new MessageView({model: message});
       this.$el.append(view.render().el);
     },
 
+    appendWarning: function() {
+      $('#messages').append(_.template($('#warning-template').html())({}));
+      window.clearInterval(this.intervalHandle);
+    },
+
     loadMessages: function() {
-      Messages.each(this.loadMessage, this);
+      if (Messages.length == this.msgCount) { 
+        console.log("skipping reload - no new messages.");
+        return false; 
+      } else if (this.msgCount > 0 && Messages.length == 0) {
+        console.log("This inbox is dead. Uh oh!");
+        this.appendWarning();
+      } else {
+        console.log("New message, let's rebuild.");
+        this.msgCount = 0;
+        this.$el.empty();             
+        Messages.each(function(message) {
+          this.msgCount++;
+          this.loadMessage( message );
+          console.log("Message #" + this.msgCount + " added!");
+        }, this);
+      }
     }
 
   });
