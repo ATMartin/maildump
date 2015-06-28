@@ -5,7 +5,7 @@ class Inbox < ActiveRecord::Base
   validates :slug, presence: true
  
   def address
-    self.slug + "@trash.atmartin.io"
+    "#{self.slug}@#{MD_EMAIL_SUBDOMAIN}" 
   end
 
   def self.slug_gen
