@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   
   root 'inbox#index'
 
+  get '/emails' => 'application#emails', :defaults => { :format => :json }
+  
   mount_griddler('/inbox/maildump')
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
