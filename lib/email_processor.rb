@@ -16,7 +16,7 @@ class EmailProcessor
       from: @email.from[:email],
       subject: @email.subject,
       body: @email.body,
-      inbox: Inbox.find_by(slug: @email.to[0][:token])
+      inbox_id: Inbox.find_by(slug: @email.to[0][:token]).id
     })
   end
 
