@@ -1,13 +1,6 @@
-<h3>Spam Inbox</h3>
+<%= render "header" %>
 
-<p>This is your spam inbox.</p>
-<p>Send messages to: </p>
-<%= text_field_tag "Sometext", @inbox.address  %>
-
-<br>
-<%= "This inbox has about #{ ((cookies[:maildump_dies_at].to_time - Time.now) / 60 ).round } minutes left!" %>
-
-<hr>
+<%= render "inbox_info" %>
 
 <div id="messages">
   Checking for messages now...
@@ -27,5 +20,4 @@
   </div>
 </script>
 
-
-<h3>Bottom</h3>
+<%= render "footer" %>
