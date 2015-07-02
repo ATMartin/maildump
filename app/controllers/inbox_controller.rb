@@ -9,11 +9,10 @@ class InboxController < ApplicationController
       new_slug = Inbox.slug_gen
       expiry = Time.now + MD_DEFAULT_DURATION
       cookies[:maildump_inbox] = { value: new_slug, expires: expiry }
-      cookies[:maildump_dies_at] = { value: expiry, expires: expiry }
+      cookies[:maildump_dies_at] = { value: expiry.to_i, expires: expiry }
       @inbox = Inbox.create!(slug: new_slug)
       @emails = []
     end
-  
   end
 
 end
