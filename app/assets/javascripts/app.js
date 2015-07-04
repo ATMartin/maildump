@@ -43,8 +43,12 @@ $(function() {
       this.intervalHandle = setInterval(function() {
         console.log("Looking for new messages...");
         Messages.fetch({ reset: true }); 
-        
       }, 5000);
+      
+      var _this = this;
+
+      //Handle death notice from timer event. 
+      $(document).on("simpletimer:stopped", function() { _this.appendWarning(); });
     },
 
     render: function() {

@@ -22,6 +22,7 @@ $(function() {
   SimpleTimer.prototype.stop = function() {
     window.clearInterval(this.timerHandle);
     this.active = false;
+    $(document).trigger("simpletimer:stopped");
   }
 
   SimpleTimer.prototype.tick = function(fxn) {
@@ -40,21 +41,15 @@ $(function() {
     // Look for our cookie token & return default if not found.
     var cookie = Date.now() + 120000;
     document.cookie.split(' ').forEach(function(kvp) {
-      console.log(kvp);
       if (kvp.split('=')[0] == "maildump_dies_at") {
-        console.log(kvp.split('=')[1].slice(0, -1));
         cookie = kvp.split('=')[1]; 
       }
     });
-    // 2-minute default
-    console.log(Date.now());
-    console.log(cookie);
     return cookie;
   }  
-  console.log(timeToDie());
 
   var timer = new SimpleTimer(Date.now().toString().slice(0, -3), timeToDie());
-
+  
   timer.tick(function(remaining) {
     var $clock = $('.inbox-timer');
     $clock.text(this.toString());  

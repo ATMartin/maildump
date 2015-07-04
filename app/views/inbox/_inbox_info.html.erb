@@ -2,7 +2,7 @@
   <p>
     <span class="inbox-address"><%= @inbox.address %></span>
     is yours for ~
-    <span class="inbox-timer">???</span>
+    <span class="inbox-timer"><%= to_pretty_time(cookies[:maildump_dies_at].to_i - Time.now.to_i) %></span>
     longer!
   </p>    
 </div>
