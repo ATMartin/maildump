@@ -19,7 +19,8 @@ $(function() {
   var Messages = new MessageCollection();
 
   var MessageView = Backbone.View.extend({
-    tagName: "tr",
+    tagName: "div",
+    className: "message-container",
     template: _.template($('#message-template').html()),
     render: function() {
       this.$el.html(this.template(this.model.toJSON()));
@@ -31,8 +32,8 @@ $(function() {
     
     el: $('#messages'),
     
-    tagName: "table",
-    
+    tagName: "div",
+
     msgCount: 0,
 
     initialize: function() {
@@ -49,6 +50,13 @@ $(function() {
 
       //Handle death notice from timer event. 
       $(document).on("simpletimer:stopped", function() { _this.appendWarning(); });
+      
+      $('#messages').on('click', '.message-container', function(e) {
+        $('.message-container').removeClass('selected');
+        console.log(e.target);
+        $(e.target).parents('.message-container').toggleClass('selected');
+      });
+
     },
 
     render: function() {

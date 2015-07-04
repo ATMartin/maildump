@@ -7,17 +7,24 @@
 </div>
 
 <script type="text/template" id="message-template">
-  <tr class="message-container">
-    <td class="message-from"><%%= from %></td>
-    <td class="message-subject"><%%= subject %></td>
-    <td class="message-body"> <%%= body %> </td>
-  </tr>
+  <div class="message-from">
+    <div class="message-header">From:</div>
+    <%%= from %>
+  </div>
+  <div class="message-subject">
+    <div class="message-header">Subject:</div>
+    <%%= subject %>
+  </div>
+  <div class="message-body">
+    <div class="message-header">Message:</div>
+    <%%= body %> 
+  </div>
 </script>
 
 <script type="text/template" id="warning-template">
-  <tr class="warning-bar">
+  <div class="warning-bar">
     <p>It looks like this inbox is dead. Would you like a <a href=''>new one?</a></p>
-  </tr>
+  </div>
 </script>
 
 <%= render "footer" %>

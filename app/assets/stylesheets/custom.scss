@@ -1,7 +1,10 @@
 /*============= Layout =======*/
 
-body {
+* {
   box-sizing: border-box;
+}
+
+body {
   height: 100%;
   padding: 0;
   margin: 0;
@@ -46,10 +49,53 @@ body {
   height: 15%;
   color: #ffffff;
   text-align: center;
-  font-family: "Healvetica Neue", sans-serif;
+  font-family: "Helvetica Neue", sans-serif;
   background-color: #3C7FDC;
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
 }
 
+#messages {
+  overflow: scroll;
+  padding-bottom: 15%;
+}
+
+.message-container {
+  min-height: 150px;
+  width: 100%;
+  border-bottom: 1px solid #aaa;
+  transition: all ease 0.25s;
+  &.selected {
+    border: 2px solid #3C7FDC;
+    box-shadow: 0px 0px 10px #aaa; 
+  }
+  div {
+    display: inline-block;
+    padding: 2%;
+    position: relative;
+    vertical-align: top;
+    .message-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 2em;
+      padding: 5px;
+      font-size: 1em;
+      color: #888;
+      font-family: "Helvetica Neue", sans-serif; 
+    }  
+  }
+  .message-from, 
+  .message-subject {
+    width: 20%;
+  }
+  .message-body {
+    width: 58%;
+  } 
+}
 
 /*============= Text Styles =======*/
 
